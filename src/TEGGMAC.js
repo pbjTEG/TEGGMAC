@@ -417,6 +417,7 @@ class TEGGMAC {
 						       thisBlock.querySelector('[data-fieldtype="street_number"]').value +
 						       ' ' +
 						       thisBlock.querySelector('[data-fieldtype="route"]').value;
+					       thisBlock.addrFinder.realAddrBlock.style.display = teggmac._options.realAddressBlockDisplayStyle;
 
 					       /* Country select must be populated with the country code.
 					        * Google returns two letter rather than three letter
