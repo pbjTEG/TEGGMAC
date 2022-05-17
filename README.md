@@ -13,7 +13,7 @@ Enable a fake input field for address completion using Google Places.
 Include jQuery and TEGGMAC in your page header.
 
 ```
- <script src="https://www.server.com/path>/jquery.min.js" type="text/javascript"></script>
+ <script src="https://www.server.com/path/jquery.min.js" type="text/javascript"></script>
  <script src="https://www.server.com/path/TEGGMAC.js" type="text/javascript"></script>
 ```
 
@@ -55,12 +55,12 @@ jQuery(document).ready(function() {
 
 `TEGGMAC` requires an object which configures the address completion. Valid values are:
 
-| Key | Required | Description | Default |
-| --- | --- | --- | --- |
-| **APIKey** | **Required** | Unique API Key value generated for the site's [Google API project](https://console.developers.google.com/apis). | Empty String
-| componentForm | Optional | A list of field types to specify what kind of data Google Maps returns for each address field. [See Google Places documentation](https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform). | `{ street_number  :'short_name', route  :'long_name', locality  :'long_name', administrative_area_level_1: 'short_name', postal_code  :'short_name', country  :'short_name'}` |
-| countryCodes | Optional | A list of two letter country codes and preferred values. This is used to translate the two letter code of the `short_name` country value to whatever the form uses. This allows the client to configure their country select field to two or three letter code values at whim. | `{ 'AF': 'AFG', 'AL': 'ALB', 'DZ': 'DZA', ... 'ZM': 'ZMB', 'ZW': 'ZWE',}` |
-| fakeAddressSelector | Optional | A CSS selector to identify all the fake address blocks  | `'.fakeAddress'` |
+| Key                 | Required     | Description                                                                                                                                                                                                                                                                    | Default                                                                                                                                                                       |
+|---------------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **APIKey**          | **Required** | Unique API Key value generated for the site's [Google API project](https://console.developers.google.com/apis).                                                                                                                                                                | Empty String                                                                                                                                                                  |
+| componentForm       | Optional     | A list of field types to specify what kind of data Google Maps returns for each address field. [See Google Places documentation](https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform).                                        | `{ street_number  :'short_name', route  :'long_name', locality  :'long_name', administrative_area_level_1: 'short_name', postal_code  :'short_name', country  :'short_name'}` |
+| countryCodes        | Optional     | A list of two letter country codes and preferred values. This is used to translate the two letter code of the `short_name` country value to whatever the form uses. This allows the client to configure their country select field to two or three letter code values at whim. | `{ 'AF': 'AFG', 'AL': 'ALB', 'DZ': 'DZA', ... 'ZM': 'ZMB', 'ZW': 'ZWE',}`                                                                                                     |
+| fakeAddressSelector | Optional     | A CSS selector to identify all the fake address blocks                                                                                                                                                                                                                         | `'.fakeAddress'`                                                                                                                                                              |
 
 
 At a minimum, the options object must contain a value for `APIKey`.

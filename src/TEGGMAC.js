@@ -55,6 +55,7 @@
  * @formatter:on
  */
 
+// noinspection JSUnusedGlobalSymbols,JSUnresolvedVariable,JSUnresolvedFunction
 class TEGGMAC {
 	constructor(Options) {
 		let teggmac = this;
@@ -474,6 +475,7 @@ class TEGGMAC {
 				       (thisBlock.addrFinder.addrFinderField),
 				       {types : ['geocode']}
 			       );
+			       // noinspection JSDeprecatedSymbols
 			       thisBlock.addrFinder.autocomplete.addListener('place_changed', thisBlock.addrFinder.fillInAddress);
 
 			       /* Hide the real address field and show the fake one

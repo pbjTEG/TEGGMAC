@@ -20,6 +20,8 @@ dist
 *.working*
 *.min.*
 *.map
+package-lock.json
+node_modules
 
 ### VisualStudioCode template
 .vscode/*
