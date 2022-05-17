@@ -41,13 +41,11 @@ The class `fakeAddress` on the outermost `div` element is required for the scrip
 
 Each `data-target` attribute is a CSS selector to uniquely identify the real form field to receive the address data. Note that the `id` of the one visible text field and the `for` of the label should be unique and match each other.
 
-In your custom JavaScript for the form, initialize the object.
+In your custom JavaScript for the form, initialize the object with an API Key from [Google Cloud](https://console.cloud.google.com) under Credentials.
 
 ```javascript
 // initialize Google Address Completion
-jQuery(document).ready(function() {
-	var MyVarName = new TEGGMAC({APIKey : 'myVeryLongAPIKeyGeneratedByGoogle'});
-}); // end jQuery(document).ready
+document.addEventListener('DOMContentLoaded', () => { let myGMAC = new TEGGMAC({APIKey : 'API Key Value from https://console.cloud.google.com'}); });
 
 ```
 
