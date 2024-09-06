@@ -36,6 +36,10 @@ module.exports = function (grunt) {
 			                 dist: {
 				                 files: [
 					                 {
+						                 src : 'src/<%= pkg.fileName %>.js',
+						                 dest: 'dist/<%= pkg.fileName %><%= postFix %>.js',
+					                 },
+					                 {
 						                 src : 'dist/<%= pkg.fileName %>.min.js',
 						                 dest: 'dist/<%= pkg.fileName %><%= postFix %>.min.js',
 					                 },
