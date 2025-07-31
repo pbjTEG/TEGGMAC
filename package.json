@@ -2,7 +2,7 @@
 	"title": "TEG Google Maps Address Completion",
 	"name": "teg-google-maps-address-completion",
 	"fileName": "TEGGMAC",
-	"version": "v2.0",
+	"version": "v2.1",
 	"description": "Add address completion to a form without writing new JS.",
 	"main": "src/TEGGMAC.js",
 	"scripts": {

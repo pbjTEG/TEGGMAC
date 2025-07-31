@@ -310,6 +310,21 @@ class TEGGMAC {
 			'ZM': 'ZMB',
 			'ZW': 'ZWE',
 		},
+		regionCodes: {
+			'AB':'CA-AB',
+			'BC':'CA-BC',
+			'MB':'CA-MB',
+			'NB':'CA-NB',
+			'NL':'CA-NL',
+			'NT':'CA-NT',
+			'NS':'CA-NS',
+			'NU':'CA-NU',
+			'ON':'CA-ON',
+			'PE':'CA-PE',
+			'QC':'CA-QC',
+			'SK':'CA-SK',
+			'YT':'CA-YT'
+		},
 		// API key for your Google Maps project
 		APIKey                      : '',
 		// CSS selector to find the fake address block(s)
@@ -364,8 +379,10 @@ class TEGGMAC {
 			       let fakeAddress = thisBlock.querySelector('input[type="text"]'),
 			           realAddress = document.querySelector(fakeAddress.getAttribute('data-target')),
 			           fakeCountry = thisBlock.querySelector('[data-fieldtype="country"]'),
-			           realCountry = document.querySelector(fakeCountry.getAttribute('data-target'))
-			       ;
+			           realCountry = document.querySelector(fakeCountry.getAttribute('data-target')),
+			           fakeRegion = thisBlock.querySelector('[data-fieldtype="administrative_area_level_1"]'),
+			           realRegion = document.querySelector(fakeRegion.getAttribute('data-target'));
+
 			       fakeAddress.addEventListener('blur', function() {
 
 				       if (!thisBlock.addrFinder.addrCompleted) {
@@ -395,6 +412,8 @@ class TEGGMAC {
 				       addrFinderField  : fakeAddress,
 				       fakeCountryField : fakeCountry,
 				       realCountryField : realCountry,
+				       fakeRegionField  : fakeRegion,
+				       realRegionField  : realRegion,
 				       autocomplete     : {},
 				       addrCompleted    : false,
 				       fillInAddress    : function() {
@@ -403,13 +422,13 @@ class TEGGMAC {
 
 					       // Get each component of the address from the place details
 					       // and fill the corresponding field on the form.
-					       for (let i = 0; i < place.address_components.length; i++) {
-						       const addressType = place.address_components[i].types[0],
+					       for (let counter = 0; counter < place.address_components.length; counter++) {
+						       const addressType = place.address_components[counter].types.filter(item => item !== 'political')[0],
 						             thisField   = thisBlock.querySelector('[data-fieldtype="' + addressType + '"]');
 
 						       // if the address field type exists, save the value to the form
 						       if (thisField !== null) {
-							       const thisValue  = place.address_components[i][thisField.getAttribute('data-fieldlength')],
+							       const thisValue  = place.address_components[counter][thisField.getAttribute('data-fieldlength')],
 							             thisTarget = document.querySelector(thisField.getAttribute('data-target'));
 
 							       // if the fake field has a valid target, save to that field
@@ -451,6 +470,23 @@ class TEGGMAC {
 							       thisBlock.addrFinder.realCountryField.selectedIndex = 0;
 						       }
 					       } // end if country field is used
+
+					       /*
+					        * Now do the same for Canadian provinces
+					        */
+					       if (thisBlock.addrFinder.realRegionField !== null) {
+								 thisBlock.addrFinder.realRegionField.value =
+									 thisBlock.addrFinder.fakeRegionField.value;
+
+								 if (thisBlock.addrFinder.realRegionField.selectedIndex === -1) {
+									 thisBlock.addrFinder.realRegionField.value =
+										 teggmac.options.regionCodes[thisBlock.addrFinder.fakeRegionField.value];
+								 }
+
+								 if (thisBlock.addrFinder.realRegionField.selectedIndex === -1) {
+									 thisBlock.addrFinder.realRegionField.selectedIndex = 0;
+								 }
+					       }
 
 					       thisBlock.addrFinder.addrCompleted = true;
 				       }, // end fillInAddress()
